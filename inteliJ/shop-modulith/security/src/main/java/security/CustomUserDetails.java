@@ -1,7 +1,7 @@
 package security;
 
 import api.Role;
-import api.User;
+import api.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

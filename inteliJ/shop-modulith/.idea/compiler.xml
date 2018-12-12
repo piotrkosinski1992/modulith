@@ -7,8 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="api" />
+        <module name="cart.api" />
+        <module name="cart.impl" />
+        <module name="cart.web" />
         <module name="impl" />
         <module name="main" />
+        <module name="product.api" />
+        <module name="product.impl" />
+        <module name="product.web" />
         <module name="security" />
         <module name="web" />
       </profile>
@@ -17,8 +23,16 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api" options="-parameters" />
+      <module name="cart" options="-parameters" />
+      <module name="cart.api" options="-parameters" />
+      <module name="cart.impl" options="-parameters" />
+      <module name="cart.web" options="-parameters" />
       <module name="impl" options="-parameters" />
       <module name="main" options="-parameters" />
+      <module name="product" options="-parameters" />
+      <module name="product.api" options="-parameters" />
+      <module name="product.impl" options="-parameters" />
+      <module name="product.web" options="-parameters" />
       <module name="security" options="-parameters" />
       <module name="web" options="-parameters" />
     </option>

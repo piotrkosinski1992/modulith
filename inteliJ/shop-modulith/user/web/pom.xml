@@ -4,26 +4,33 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>com.modulith</groupId>
-        <artifactId>shop-modulith</artifactId>
+        <artifactId>user</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>security</artifactId>
+    <artifactId>user.web</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${boot.starter.version}</version>
         </dependency>
         <dependency>
             <groupId>com.modulith</groupId>
-            <artifactId>user.impl</artifactId>
+            <artifactId>user.api</artifactId>
+            <version>${shop.modulith.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.modulith</groupId>
+            <artifactId>security</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
