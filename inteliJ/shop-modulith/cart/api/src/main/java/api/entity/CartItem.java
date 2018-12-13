@@ -1,9 +1,11 @@
-package api;
+package api.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
 @Entity
-public class ProductCart {
+public class CartItem {
 
     @Id
     @GeneratedValue
@@ -11,11 +13,16 @@ public class ProductCart {
 
     private int amount;
 
+    @ManyToOne
+    @JoinColumn(name = "cartId")
+    @JsonIgnore
+    private Cart cart;
+
     @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
-    public ProductCart() {
+    public CartItem() {
     }
 
     public Long getId() {
@@ -40,5 +47,13 @@ public class ProductCart {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }

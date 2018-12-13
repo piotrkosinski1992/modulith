@@ -1,30 +1,26 @@
 package web;
 
-import api.Product;
-import api.ProductDTO;
-import api.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import api.ProductCategory;
+import api.dto.ProductDTO;
+import api.entity.Product;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-public class ProductController {
-
-    @Autowired
-    private ProductService productService;
+public interface ProductController {
 
     @PostMapping("/admin/product")
-    public void addProduct(@RequestBody Product product) {
-        productService.addProduct(product);
-
-    }
+    void addProduct(@RequestBody Product product);
 
     @GetMapping("/customer/product/all")
-    public List<ProductDTO> getAllProducts() {
-        return productService.getAllProducts();
-    }
+    List<ProductDTO> getAllProducts();
+
+    @PostMapping("/admin/update")
+    void updateProduct(@RequestBody Product product);
+
+    @DeleteMapping("/admin/delete/{id}")
+    void deleteProductById(@PathVariable Long id);
+
+    @GetMapping("/customer/product/{category}")
+    List<ProductDTO> getProductsByCategory(@PathVariable ProductCategory category);
 }

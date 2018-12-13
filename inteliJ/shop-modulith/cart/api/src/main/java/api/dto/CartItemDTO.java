@@ -1,6 +1,6 @@
-package api;
+package api.dto;
 
-public class ProductCartDTO {
+public class CartItemDTO {
 
     private Long id;
 
@@ -10,7 +10,7 @@ public class ProductCartDTO {
 
     private String productName;
 
-    public ProductCartDTO() {
+    public CartItemDTO() {
     }
 
     public Long getId() {

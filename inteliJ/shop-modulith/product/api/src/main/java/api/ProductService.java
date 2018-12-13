@@ -1,5 +1,9 @@
 package api;
 
+import api.dto.ProductDTO;
+import api.entity.Product;
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface ProductService {
@@ -12,11 +16,8 @@ public interface ProductService {
 
     List<ProductDTO> getAllProducts();
 
-    List<ProductDTO> getProductsByCategory(Category category);
+    List<ProductDTO> getProductsByCategory(ProductCategory productCategory);
 
     ProductDTO getProductById(Long productId);
 
-    void addToCart(ProductCartDTO productCartDTO);
-
-    List<ProductDTO> getProductFromCart(String username);
 }

@@ -1,4 +1,7 @@
-package api;
+package api.dto;
+
+import api.ProductCategory;
+import api.entity.Product;
 
 public class ProductDTO {
 
@@ -6,7 +9,7 @@ public class ProductDTO {
 
     private String name;
 
-    private Category category;
+    private ProductCategory productCategory;
 
     private String description;
 
@@ -15,7 +18,7 @@ public class ProductDTO {
     public ProductDTO(Product product){
         this.id = product.getId();
         this.name = product.getName();
-        this.category = product.getCategory();
+        this.productCategory = product.getProductCategory();
         this.description = product.getDescription();
     }
 
@@ -35,12 +38,12 @@ public class ProductDTO {
         this.name = name;
     }
 
-    public Category getCategory() {
-        return category;
+    public ProductCategory getProductCategory() {
+        return productCategory;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
     }
 
     public String getDescription() {

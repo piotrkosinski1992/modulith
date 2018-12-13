@@ -18,7 +18,7 @@ class HomeControllerImpl implements HomeController {
 
     @Override
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Valid CustomerDTO customerDTO) {
+    public ResponseEntity register(@Valid CustomerDTO customerDTO) {
         customerService.addCustomer(customerDTO);
         return new ResponseEntity(HttpStatus.CREATED);
     }

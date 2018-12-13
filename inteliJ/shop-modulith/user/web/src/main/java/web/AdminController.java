@@ -16,7 +16,7 @@ public interface AdminController {
     ResponseEntity<List<CustomerDTO>> getAllCustomers();
 
     @GetMapping("/customer/username/{username}")
-    CustomerDTO getCustomerByUsername(@PathVariable String username);
+    ResponseEntity<CustomerDTO> getCustomerByUsername(@PathVariable String username);
 
     @DeleteMapping("/customer/{username}")
     ResponseEntity deleteCustomerByUsername(@PathVariable String username);

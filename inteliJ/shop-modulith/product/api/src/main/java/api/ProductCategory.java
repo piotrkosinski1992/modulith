@@ -1,5 +1,5 @@
 package api;
 
-public enum Category {
+public enum ProductCategory {
     PHONE,CAR,BOOK
 }

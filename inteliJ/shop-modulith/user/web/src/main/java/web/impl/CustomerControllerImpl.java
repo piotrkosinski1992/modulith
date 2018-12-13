@@ -17,9 +17,9 @@ class CustomerControllerImpl implements CustomerController {
     private CustomerService customerService;
 
     @Override
-    public CustomerDTO getCurrentCustomer(Principal principal) {
+    public ResponseEntity<CustomerDTO> getCurrentCustomer(Principal principal) {
 
-        return customerService.getCustomerByUsername(principal.getName());
+        return new ResponseEntity<>(customerService.getCustomerByUsername(principal.getName()), HttpStatus.OK);
     }
 
     @Override

@@ -3,10 +3,7 @@ package web;
 
 import api.dto.CustomerDTO;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -15,9 +12,9 @@ import java.security.Principal;
 public interface CustomerController {
 
     @GetMapping("/get/current")
-    CustomerDTO getCurrentCustomer(Principal principal);
+    ResponseEntity<CustomerDTO> getCurrentCustomer(Principal principal);
 
-    @PutMapping("/update")
+    @PostMapping("/update")
     ResponseEntity updateCustomer(@RequestBody @Valid CustomerDTO customerDTO);
 
 }

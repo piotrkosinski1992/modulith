@@ -2,8 +2,10 @@ package impl;
 
 import api.*;
 import api.dto.CustomerDTO;
+import api.entity.Cart;
 import api.entity.Customer;
 import api.mapper.CustomerMapper;
+import api.repository.CartRepository;
 import api.repository.CustomerRepository;
 import impl.exceptions.NoCustomerWithIdException;
 import impl.exceptions.NoCustomerWithUsernameException;
@@ -26,6 +28,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private CartRepository cartRepository;
 
     @Override
     public List<CustomerDTO> getAllCustomers() {
@@ -65,7 +70,8 @@ public class CustomerServiceImpl implements CustomerService {
             throw new NotUniqueUnsernameException(customerDTO.getUsername());
         }
         customerDTO.setPassword(passwordEncoder.encode(customerDTO.getPassword()));
-        customerRepository.save(CustomerMapper.mapToCustomer(customerDTO));
+
+        cartRepository.save(new Cart(CustomerMapper.mapToCustomer(customerDTO)));
     }
 
     @Override
@@ -82,7 +88,6 @@ public class CustomerServiceImpl implements CustomerService {
 
         customer.setEmail(customerDTO.getEmail());
         customer.setPassword(passwordEncoder.encode(customerDTO.getPassword()));
-        customer.setUsername(customerDTO.getUsername());
 
         //TODO verify if needed
         customerRepository.save(customer);

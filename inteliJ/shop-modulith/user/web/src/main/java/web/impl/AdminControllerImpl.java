@@ -25,8 +25,8 @@ public class AdminControllerImpl implements AdminController {
     }
 
     @Override
-    public CustomerDTO getCustomerByUsername(String username) {
-        return customerService.getCustomerByUsername(username);
+    public ResponseEntity<CustomerDTO> getCustomerByUsername(String username) {
+        return new ResponseEntity<>(customerService.getCustomerByUsername(username), HttpStatus.OK);
     }
 
     @Override

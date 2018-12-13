@@ -1,3 +1,5 @@
+import api.entity.Cart;
+import api.repository.CartRepository;
 import api.entity.Admin;
 import api.repository.AdminRepository;
 import api.entity.Customer;
@@ -30,6 +32,9 @@ public class MainClass implements CommandLineRunner {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private CartRepository cartRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(MainClass.class);
     }
@@ -42,9 +47,11 @@ public class MainClass implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+
         adminRepository.save(new Admin("admin", passwordEncoder.encode("admin")));
 
-        customerRepository.save(new Customer("user", passwordEncoder.encode("user"),"malpa@o2.pl"));
+        cartRepository.save(new Cart(new Customer("user", passwordEncoder.encode("user"),"malpa@o2.pl")));
     }
 }
 

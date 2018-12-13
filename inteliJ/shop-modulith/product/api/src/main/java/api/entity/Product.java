@@ -1,4 +1,6 @@
-package api;
+package api.entity;
+
+import api.ProductCategory;
 
 import javax.persistence.*;
 
@@ -12,7 +14,7 @@ public class Product {
     private String name;
 
     @Enumerated(EnumType.STRING)
-    private Category category;
+    private ProductCategory productCategory;
 
     private String description;
 
@@ -35,12 +37,12 @@ public class Product {
         this.name = name;
     }
 
-    public Category getCategory() {
-        return category;
+    public ProductCategory getProductCategory() {
+        return productCategory;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
     }
 
     public String getDescription() {
