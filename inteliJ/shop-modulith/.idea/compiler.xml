@@ -11,6 +11,9 @@
         <module name="cart.impl" />
         <module name="cart.web" />
         <module name="impl" />
+        <module name="inventory.api" />
+        <module name="inventory.impl" />
+        <module name="inventory.web" />
         <module name="main" />
         <module name="product.api" />
         <module name="product.impl" />
@@ -28,6 +31,10 @@
       <module name="cart.impl" options="-parameters" />
       <module name="cart.web" options="-parameters" />
       <module name="impl" options="-parameters" />
+      <module name="inventory" options="-parameters" />
+      <module name="inventory.api" options="-parameters" />
+      <module name="inventory.impl" options="-parameters" />
+      <module name="inventory.web" options="-parameters" />
       <module name="main" options="-parameters" />
       <module name="product" options="-parameters" />
       <module name="product.api" options="-parameters" />

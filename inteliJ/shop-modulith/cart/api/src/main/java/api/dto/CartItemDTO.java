@@ -2,24 +2,21 @@ package api.dto;
 
 public class CartItemDTO {
 
-    private Long id;
-
     private int amount;
 
     private Long productId;
 
     private String productName;
 
+    public CartItemDTO(int amount, Long productId, String productName) {
+        this.amount = amount;
+        this.productId = productId;
+        this.productName = productName;
+    }
+
     public CartItemDTO() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public int getAmount() {
         return amount;

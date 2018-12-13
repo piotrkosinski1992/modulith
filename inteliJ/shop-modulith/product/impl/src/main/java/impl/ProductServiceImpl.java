@@ -3,6 +3,7 @@ package impl;
 import api.*;
 import api.dto.ProductDTO;
 import api.entity.Product;
+import api.mapper.ProductMapper;
 import api.repository.ProductRepository;
 import impl.execptions.NoProductWithIdException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
         List<Product> products = productRepository.findAll();
 
         return products.stream()
-                       .map(product -> new ProductDTO(product))
+                       .map(product -> ProductMapper.mapToProductDTO(product))
                        .collect(Collectors.toList());
     }
 
@@ -54,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
         List<Product> products = productRepository.findByProductCategory(productCategory);
 
         return products.stream()
-                .map(product -> new ProductDTO(product))
+                .map(product -> ProductMapper.mapToProductDTO(product))
                 .collect(Collectors.toList());
     }
 
@@ -62,7 +63,7 @@ public class ProductServiceImpl implements ProductService {
     public ProductDTO getProductById(Long productId) {
         Product product = productRepository.findById(productId).orElseThrow(() -> new NoProductWithIdException(productId));
 
-        return new ProductDTO(product);
+        return ProductMapper.mapToProductDTO(product);
     }
 
 }

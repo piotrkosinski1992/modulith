@@ -18,6 +18,9 @@ public class Cart {
     @JoinColumn(name = "customerId")
     private Customer customer;
 
+    @Transient
+    private double total;
+
     public Cart(){}
 
     public Cart(Customer customer) {

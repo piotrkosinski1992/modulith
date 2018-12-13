@@ -11,15 +11,12 @@ public class ProductDTO {
 
     private ProductCategory productCategory;
 
-    private String description;
-
     public ProductDTO(){}
 
-    public ProductDTO(Product product){
-        this.id = product.getId();
-        this.name = product.getName();
-        this.productCategory = product.getProductCategory();
-        this.description = product.getDescription();
+    public ProductDTO(Long id, String name, ProductCategory productCategory){
+        this.id = id;
+        this.name = name;
+        this.productCategory = productCategory;
     }
 
     public Long getId() {
@@ -46,11 +43,4 @@ public class ProductDTO {
         this.productCategory = productCategory;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }
