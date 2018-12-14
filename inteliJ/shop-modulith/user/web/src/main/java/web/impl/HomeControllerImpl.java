@@ -22,5 +22,4 @@ class HomeControllerImpl implements HomeController {
         customerService.addCustomer(customerDTO);
         return new ResponseEntity(HttpStatus.CREATED);
     }
-
 }

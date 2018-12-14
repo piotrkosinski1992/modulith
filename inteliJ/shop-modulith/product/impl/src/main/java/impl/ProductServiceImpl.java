@@ -60,10 +60,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDTO getProductById(Long productId) {
+    public ProductDTO getProductDTOById(Long productId) {
         Product product = productRepository.findById(productId).orElseThrow(() -> new NoProductWithIdException(productId));
 
         return ProductMapper.mapToProductDTO(product);
     }
 
+    @Override
+    public Product getProductById(Long productId) {
+        Product product = productRepository.findById(productId).orElseThrow(() -> new NoProductWithIdException(productId));
+        return product;
+    }
 }

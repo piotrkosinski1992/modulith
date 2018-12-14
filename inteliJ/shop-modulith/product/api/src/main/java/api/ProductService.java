@@ -18,6 +18,8 @@ public interface ProductService {
 
     List<ProductDTO> getProductsByCategory(ProductCategory productCategory);
 
-    ProductDTO getProductById(Long productId);
+    ProductDTO getProductDTOById(Long productId);
+
+    Product getProductById(Long productId);
 
 }

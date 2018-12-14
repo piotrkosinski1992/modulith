@@ -88,9 +88,13 @@
         </dependency>
         <dependency>
             <groupId>com.modulith</groupId>
-            <artifactId>cart.api</artifactId>
+            <artifactId>inventory.impl</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.modulith</groupId>
+            <artifactId>inventory.web</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

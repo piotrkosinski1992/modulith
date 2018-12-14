@@ -24,6 +24,12 @@ public class Product {
         this.productCategory = productCategory;
     }
 
+    public Product(String name, ProductCategory productCategory, String description){
+        this.name = name;
+        this.productCategory = productCategory;
+        this.description = description;
+    }
+
     public Product(){}
 
 

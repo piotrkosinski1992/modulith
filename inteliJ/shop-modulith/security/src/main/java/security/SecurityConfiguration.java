@@ -51,8 +51,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/");
-	        //.logoutUrl("/logout");
+                .logoutSuccessUrl("/")
+	            .logoutUrl("/logout");
 
         http.csrf().disable();
     }

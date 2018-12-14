@@ -52,7 +52,7 @@ public class AdminControllerImplTest {
                         null, new ParameterizedTypeReference<List<CustomerDTO>>(){});
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody().size()).isEqualTo(1);
+        assertThat(response.getBody().size()).isEqualTo(2);
     }
 
     @Test

@@ -1,7 +1,7 @@
 package web;
 
 import api.dto.CartDTO;
-import api.entity.CartItem;
+import api.dto.CartItemDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -12,8 +12,8 @@ public interface CartController {
     CartDTO getCart(Principal principal);
 
     @PostMapping("/customer/cart/add")
-    void addCartItemToCart(@RequestBody CartItem cartItem, Principal principal);
+    void addCartItemToCart(@RequestBody CartItemDTO cartItemDTO, Principal principal);
 
     @DeleteMapping("/customer/delete/")
-    void deleteCartItemFromCart(@RequestBody CartItem cartItem, Principal principal);
+    void deleteCartItemFromCart(@RequestBody CartItemDTO cartItemDTO, Principal principal);
 }

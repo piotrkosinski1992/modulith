@@ -2,7 +2,7 @@ package web.impl;
 
 import api.CartService;
 import api.dto.CartDTO;
-import api.entity.CartItem;
+import api.dto.CartItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import web.CartController;
@@ -17,19 +17,17 @@ class CartControllerImpl implements CartController {
 
     @Override
     public CartDTO getCart(Principal principal) {
-        CartDTO cartDTO = cartService.getCartByUsername(principal.getName());
-
-        return null;
+        return cartService.getCartByUsername(principal.getName());
     }
 
     @Override
-    public void addCartItemToCart(CartItem cartItem, Principal principal) {
-        cartService.addCartItemToCart(cartItem, principal.getName());
+    public void addCartItemToCart(CartItemDTO cartItemDTO, Principal principal) {
+        cartService.addCartItemToCart(cartItemDTO, principal.getName());
 
     }
 
     @Override
-    public void deleteCartItemFromCart(CartItem cartItem, Principal principal) {
-        cartService.deleteCartItemFromCart(cartItem, principal.getName());
+    public void deleteCartItemFromCart(CartItemDTO cartItemDTO, Principal principal) {
+        cartService.deleteCartItem(cartItemDTO, principal.getName());
     }
 }

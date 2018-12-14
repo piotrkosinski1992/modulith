@@ -7,7 +7,9 @@ import api.mapper.InventoryMapper;
 import api.repository.InventoryRepository;
 import impl.exceptions.NoProductWithIdException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class InventoryServiceImpl implements InventoryService {
 
     @Autowired
@@ -50,5 +52,12 @@ public class InventoryServiceImpl implements InventoryService {
                 .orElseThrow(() -> new NoProductWithIdException(inventoryDTO.getProductId()));
 
         return inventory.getAmount() >= inventoryDTO.getAmount();
+    }
+
+    @Override
+    public double getProductPriceById(Long productId) {
+        Inventory inventory = inventoryRepository.findByProductId(productId)
+                .orElseThrow(() -> new NoProductWithIdException(productId));
+        return inventory.getPrice();
     }
 }

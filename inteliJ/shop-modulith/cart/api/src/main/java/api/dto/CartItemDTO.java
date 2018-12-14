@@ -6,9 +6,12 @@ public class CartItemDTO {
 
     private Long productId;
 
+    private double productPrice;
+
     private String productName;
 
-    public CartItemDTO(int amount, Long productId, String productName) {
+    public CartItemDTO(int amount, Long productId, String productName, double productPrice) {
+        this.productPrice = productPrice;
         this.amount = amount;
         this.productId = productId;
         this.productName = productName;
@@ -17,6 +20,11 @@ public class CartItemDTO {
     public CartItemDTO() {
     }
 
+    public CartItemDTO(int amount, Long productId, String productName) {
+        this.amount = amount;
+        this.productId = productId;
+        this.productName = productName;
+    }
 
     public int getAmount() {
         return amount;
@@ -40,5 +48,13 @@ public class CartItemDTO {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public double getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
     }
 }

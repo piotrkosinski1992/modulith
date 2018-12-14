@@ -11,4 +11,6 @@ public interface InventoryService {
     void getItemFromInventory(InventoryDTO inventoryDTO);
 
     boolean isEnoughProductInInventory(InventoryDTO inventoryDTO);
+
+    double getProductPriceById(Long productId);
 }
