@@ -1,6 +1,7 @@
 package api;
 
 import api.dto.InventoryDTO;
+import api.entity.Inventory;
 
 public interface InventoryService {
 
@@ -13,4 +14,6 @@ public interface InventoryService {
     boolean isEnoughProductInInventory(InventoryDTO inventoryDTO);
 
     double getProductPriceById(Long productId);
+
+    int getInventoryAmountByProductId(Long productId);
 }

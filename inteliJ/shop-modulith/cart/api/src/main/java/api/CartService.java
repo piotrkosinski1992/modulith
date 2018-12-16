@@ -10,7 +10,7 @@ public interface CartService {
 
     void addCartItemToCart(CartItemDTO cartItem, String username);
 
-    void deleteCartItem(CartItemDTO cartItem, String username);
+    void deleteCartItem(Long productId, String username);
 
     void updateCartItem(CartItemDTO cartItem, String username);
 }

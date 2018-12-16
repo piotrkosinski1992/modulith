@@ -27,7 +27,12 @@ class CartControllerImpl implements CartController {
     }
 
     @Override
-    public void deleteCartItemFromCart(CartItemDTO cartItemDTO, Principal principal) {
-        cartService.deleteCartItem(cartItemDTO, principal.getName());
+    public void deleteCartItemFromCart(Long productId, Principal principal) {
+        cartService.deleteCartItem(productId, principal.getName());
+    }
+
+    @Override
+    public void updateCartItemFromCart(CartItemDTO cartItemDTO, Principal principal) {
+        cartService.updateCartItem(cartItemDTO, principal.getName());
     }
 }

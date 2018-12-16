@@ -14,6 +14,9 @@ public interface CartController {
     @PostMapping("/customer/cart/add")
     void addCartItemToCart(@RequestBody CartItemDTO cartItemDTO, Principal principal);
 
-    @DeleteMapping("/customer/delete/")
-    void deleteCartItemFromCart(@RequestBody CartItemDTO cartItemDTO, Principal principal);
+    @DeleteMapping("/customer/delete/{productId}")
+    void deleteCartItemFromCart(@PathVariable Long productId, Principal principal);
+
+    @PutMapping("/customer/update")
+    void updateCartItemFromCart(@RequestBody CartItemDTO cartItemDTO, Principal principal);
 }

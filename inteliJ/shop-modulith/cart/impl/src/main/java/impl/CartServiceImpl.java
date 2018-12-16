@@ -12,7 +12,8 @@ import api.entity.Product;
 import api.mappers.CartItemMapper;
 import api.repository.CartItemRepository;
 import api.repository.CartRepository;
-import impl.exceptions.NoCartItemInCartException;
+import impl.exceptions.NoProductWithIdException;
+import impl.exceptions.NotEnoughItemInInventoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,15 +53,16 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void addCartItemToCart(CartItemDTO cartItemDTO, String username) {
-        Cart cart = cartRepository.findByCustomerUsername(username);
 
-        //sprawdzenie czy mozna tyle dodac do koszyka
+        checkProductAvailbilityInInventory(cartItemDTO);
+
+        Cart cart = cartRepository.findByCustomerUsername(username);
 
         CartItem newOrUpdatedCartItem = null;
 
         if(itemExistsInCart(cart.getCartItems(), cartItemDTO.getProductId())) {
             for(CartItem cartItem : cart.getCartItems()) {
-                if(cartItem.getProduct().getId() == cartItemDTO.getProductId()) {
+                if(cartItem.getProduct().getId().equals(cartItemDTO.getProductId())) {
                     cartItem.setAmount(cartItem.getAmount() + cartItemDTO.getAmount());
                     newOrUpdatedCartItem = cartItem;
                     break;
@@ -75,21 +77,28 @@ public class CartServiceImpl implements CartService {
         cartItemRepository.save(newOrUpdatedCartItem);
     }
 
+    private void checkProductAvailbilityInInventory(CartItemDTO cartItemDTO) {
+        int productInventoryAmount = inventoryService.getInventoryAmountByProductId(cartItemDTO.getProductId());
+
+        if(productInventoryAmount < cartItemDTO.getAmount()) {
+            throw new NotEnoughItemInInventoryException();
+        }
+    }
+
     @Override
-    public void deleteCartItem(CartItemDTO cartItem, String username) {
+    @Transactional
+    public void deleteCartItem(Long productId, String username) {
         Cart cart = cartRepository.findByCustomerUsername(username);
 
-        cart.getCartItems().removeIf(item -> item.getProduct().getId() == cartItem.getProductId());
+        cart.getCartItems().removeIf(item -> item.getProduct().getId().equals(productId));
 
+        cartItemRepository.deleteByProductId(productId);
         cartRepository.save(cart);
-        // nie usuwa :O
     }
 
     private boolean itemExistsInCart(List<CartItem> cartItems, Long productId) {
         return cartItems.stream()
-                 .filter(cartItem -> cartItem.getProduct().getId() == productId)
-                 .findFirst()
-                 .isPresent();
+                 .anyMatch(cartItem -> cartItem.getProduct().getId().equals(productId));
     }
 
     private double calculateTotal(List<CartItemDTO> cartItemDTOs) {
@@ -105,7 +114,19 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void updateCartItem(CartItemDTO cartItem, String username) {
+    public void updateCartItem(CartItemDTO cartItemDTO, String username) {
 
+        checkProductAvailbilityInInventory(cartItemDTO);
+
+        Cart cart = cartRepository.findByCustomerUsername(username);
+
+        CartItem cartItemToUpdate = cart.getCartItems().stream()
+                                                       .filter(item -> item.getProduct().getId().equals(cartItemDTO.getProductId()))
+                                                       .findFirst()
+                                                       .orElseThrow(() -> new NoProductWithIdException(cartItemDTO.getProductId()));
+
+        cartItemToUpdate.setAmount(cartItemDTO.getAmount());
+
+        cartItemRepository.save(cartItemToUpdate);
     }
 }

@@ -60,4 +60,12 @@ public class InventoryServiceImpl implements InventoryService {
                 .orElseThrow(() -> new NoProductWithIdException(productId));
         return inventory.getPrice();
     }
+
+    @Override
+    public int getInventoryAmountByProductId(Long productId) {
+        Inventory inventory = inventoryRepository.findByProductId(productId)
+                .orElseThrow(() -> new NoProductWithIdException(productId));
+
+        return inventory.getAmount();
+    }
 }
